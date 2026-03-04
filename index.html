@@ -66,7 +66,7 @@ body {
 /* --- SLIM NAME & 8K SHINE --- */
 .name {
   font-size: 38px;
-  font-weight: 600; /* Slim style */
+  font-weight: 600;
   margin-top: 25px;
   color: #fff;
   letter-spacing: -0.5px;
@@ -92,7 +92,7 @@ body {
   border: 1px solid rgba(255,255,255,0.05);
 }
 
-/* --- SOCIAL ICONS BLOOM --- */
+/* --- SOCIAL ICONS --- */
 .social-row {
   display: flex;
   justify-content: center;
@@ -104,7 +104,12 @@ body {
   color: #fff;
   font-size: 24px;
   text-decoration: none;
+  transition: transform 0.3s ease;
   animation: iconGlow 4s infinite ease-in-out;
+}
+
+.social-row a:hover {
+  transform: translateY(-5px);
 }
 
 @keyframes iconGlow {
@@ -112,7 +117,7 @@ body {
   50% { filter: drop-shadow(0 0 15px #fff); opacity: 1; }
 }
 
-/* --- FOOTER LIGHTING --- */
+/* --- FOOTER INFO --- */
 .footer-info {
   display: flex;
   justify-content: center;
@@ -143,7 +148,7 @@ body {
 
 <div class="profile-card">
   <div class="pfp-container">
-    <img src="1000041618.jpg" alt="Profile">
+    <img src="1000041618.jpg" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=C&background=111&color=fff'">
   </div>
 
   <div class="name">Cratia</div>
@@ -154,10 +159,13 @@ body {
   </div>
 
   <div class="social-row">
-    <a href="#"><i class="fab fa-telegram"></i></a>
-    <a href="#"><i class="fab fa-spotify"></i></a>
-    <a href="#"><i class="fab fa-discord"></i></a>
-    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="https://t.me/cratia" target="_blank"><i class="fab fa-telegram"></i></a>
+    
+    <a href="https://discord.com/users/1215665111407009902" target="_blank"><i class="fab fa-discord"></i></a>
+    
+    <a href="https://open.spotify.com/artist/1QAJqy2Pk7YXY3as9O6z9j" target="_blank"><i class="fab fa-spotify"></i></a>
+    
+    <a href="https://github.com/crtai" target="_blank"><i class="fab fa-github"></i></a>
   </div>
 
   <div class="footer-info">
@@ -167,30 +175,6 @@ body {
 </div>
 
 <script>
-  /* --- FAST TYPEWRITER TITLE (TAB) --- */
-  const titleText = "@cratia_";
-  let charIndex = 0;
-  let isDeleting = false;
-
-  function typeTitle() {
-    const cursor = (Math.random() > 0.5) ? "_" : "";
-    const currentTitle = isDeleting 
-      ? titleText.substring(0, charIndex--) 
-      : titleText.substring(0, charIndex++);
-    document.title = currentTitle + cursor;
-    if (!isDeleting && charIndex > titleText.length) {
-      isDeleting = true;
-      setTimeout(typeTitle, 1500);
-    } else if (isDeleting && charIndex < 0) {
-      isDeleting = false;
-      charIndex = 0;
-      setTimeout(typeTitle, 300);
-    } else {
-      setTimeout(typeTitle, isDeleting ? 60 : 120); 
-    }
-  }
-  typeTitle();
-
   /* --- STAR DRIFT --- */
   const canvas = document.getElementById('drift-canvas');
   const ctx = canvas.getContext('2d');
