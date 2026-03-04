@@ -4,214 +4,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>@cratia_</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
 <style>
-:root {
-  --true-black: #000000;
-  --card-bg: #090909;
-}
-
-body {
-  background: var(--true-black);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  font-family: 'Inter', sans-serif;
-}
-
-#drift-canvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -1;
-}
-
-/* --- THE CARD --- */
-.profile-card {
-  position: relative;
-  width: 330px;
-  padding: 55px 25px;
-  background: var(--card-bg);
-  border-radius: 45px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 60px rgba(0,0,0,1);
-  text-align: center;
-  z-index: 10;
-}
-
-/* --- PFP CONTAINER --- */
-.pfp-container {
-  width: 130px;
-  height: 130px;
-  margin: 0 auto;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1.5px solid rgba(255,255,255,0.12);
-  background: #111;
-}
-
-.pfp-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* --- SLIM NAME & 8K SHINE --- */
-.name {
-  font-size: 38px;
-  font-weight: 600;
-  margin-top: 25px;
-  color: #fff;
-  letter-spacing: -0.5px;
-  animation: shinePulse 4s infinite ease-in-out;
-}
-
-@keyframes shinePulse {
-  0%, 100% { text-shadow: 0 0 8px rgba(255,255,255,0.3); opacity: 0.85; }
-  50% { text-shadow: 0 0 25px #fff, 0 0 45px #fff; opacity: 1; }
-}
-
+:root { --true-black: #000; --card-bg: #090909; }
+body { background: var(--true-black); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
+#drift-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+.profile-card { position: relative; width: 330px; padding: 55px 25px; background: var(--card-bg); border-radius: 45px; border: 1px solid rgba(255,255,255,0.08); text-align: center; z-index: 10; }
+.pfp-container { width: 130px; height: 130px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.12); }
+.pfp-container img { width: 100%; height: 100%; object-fit: cover; }
+.name { font-size: 38px; font-weight: 600; margin-top: 25px; animation: shine 4s infinite ease-in-out; }
+@keyframes shine { 0%, 100% { text-shadow: 0 0 8px rgba(255,255,255,0.3); } 50% { text-shadow: 0 0 25px #fff; } }
 .bio { font-size: 13px; color: #777; margin-top: 10px; }
-
-.joined-badge {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 11px;
-  color: #555;
-  margin-top: 22px;
-  border: 1px solid rgba(255,255,255,0.05);
-}
-
-/* --- SOCIAL ICONS --- */
-.social-row {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin-top: 40px;
-}
-
-.social-row a {
-  color: #fff;
-  font-size: 24px;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-  animation: iconGlow 4s infinite ease-in-out;
-}
-
-.social-row a:hover {
-  transform: translateY(-5px);
-}
-
-@keyframes iconGlow {
-  0%, 100% { filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); opacity: 0.5; }
-  50% { filter: drop-shadow(0 0 15px #fff); opacity: 1; }
-}
-
-/* --- FOOTER INFO --- */
-.footer-info {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  font-size: 11px;
-  margin-top: 35px;
-  border-top: 1px solid rgba(255,255,255,0.03);
-  padding-top: 25px;
-}
-
-.stat-item {
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  animation: statLight 4s infinite ease-in-out;
-}
-
-@keyframes statLight {
-  0%, 100% { opacity: 0.35; text-shadow: none; }
-  50% { opacity: 0.85; text-shadow: 0 0 10px #fff; }
-}
+.social-row { display: flex; justify-content: center; gap: 25px; margin-top: 40px; }
+.social-row a { color: #fff; font-size: 24px; text-decoration: none; transition: 0.3s; }
+.social-row a:hover { transform: translateY(-5px); }
+.footer-info { display: flex; justify-content: center; gap: 25px; font-size: 11px; margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 25px; color: #555; }
 </style>
 </head>
 <body>
-
 <canvas id="drift-canvas"></canvas>
-
 <div class="profile-card">
   <div class="pfp-container">
-    <img src="1000041618.jpg" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=C&background=111&color=fff'">
+    <img src="1000041618.jpg" alt="PFP" onerror="this.src='https://ui-avatars.com/api/?name=C&background=111&color=fff'">
   </div>
-
   <div class="name">Cratia</div>
   <div class="bio">Offline in spirit, online by force.</div>
-
-  <div class="joined-badge">
-    <i class="fa-regular fa-calendar"></i> Joined 9 months ago
-  </div>
-
   <div class="social-row">
     <a href="https://t.me/cratia" target="_blank"><i class="fab fa-telegram"></i></a>
-    
     <a href="https://discord.com/users/1215665111407009902" target="_blank"><i class="fab fa-discord"></i></a>
-    
-    <a href="https://open.spotify.com/artist/1QAJqy2Pk7YXY3as9O6z9j" target="_blank"><i class="fab fa-spotify"></i></a>
-    
+    <a href="https://open.spotify.com/artist/1QAJqy2Pk7YXYDNZ1DYMID" target="_blank"><i class="fab fa-spotify"></i></a>
     <a href="https://github.com/crtai" target="_blank"><i class="fab fa-github"></i></a>
   </div>
-
   <div class="footer-info">
-    <div class="stat-item"><i class="fa-solid fa-eye"></i> 13,042</div>
-    <div class="stat-item"><i class="fa-solid fa-location-dot"></i> Ethiopia</div>
+    <span><i class="fa-solid fa-eye"></i> 13,042</span>
+    <span><i class="fa-solid fa-location-dot"></i> Ethiopia</span>
   </div>
 </div>
-
 <script>
-  /* --- STAR DRIFT --- */
-  const canvas = document.getElementById('drift-canvas');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
-  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-  window.addEventListener('resize', resize);
-  resize();
-
-  class Star {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 1.1 + 0.4;
-      this.speed = Math.random() * 0.4 + 0.1;
-      this.opacity = Math.random() * 0.5 + 0.1;
-    }
-    update() {
-      this.x += this.speed;
-      if (this.x > canvas.width) { this.x = -10; this.y = Math.random() * canvas.height; }
-    }
-    draw() {
-      ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-  function init() { stars = []; for (let i = 0; i < 110; i++) stars.push(new Star()); }
-  init();
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(s => { s.update(); s.draw(); });
-    requestAnimationFrame(animate);
-  }
-  animate();
+const canvas = document.getElementById('drift-canvas');
+const ctx = canvas.getContext('2d');
+let stars = [];
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize);
+resize();
+class Star {
+  constructor() { this.reset(); }
+  reset() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*1.1+0.4; this.speed = Math.random()*0.4+0.1; this.opacity = Math.random()*0.5+0.1; }
+  update() { this.x += this.speed; if (this.x > canvas.width) this.reset(); }
+  draw() { ctx.fillStyle = `rgba(255,255,255,${this.opacity})`; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
+}
+for(let i=0; i<100; i++) stars.push(new Star());
+function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); stars.forEach(s=>{s.update();s.draw();}); requestAnimationFrame(animate); }
+animate();
 </script>
-
 </body>
 </html>
