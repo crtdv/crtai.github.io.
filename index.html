@@ -5,146 +5,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>@cratia_</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <style>
-:root {
-  --true-black: #000000;
-  --card-bg: #090909;
-}
+:root { --true-black: #000000; --card-bg: #090909; }
+body { background: var(--true-black); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
+#drift-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-body {
-  background: var(--true-black);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  font-family: 'Inter', sans-serif;
-}
+.profile-card { position: relative; width: 330px; padding: 55px 25px; background: var(--card-bg); border-radius: 45px; border: 1px solid rgba(255, 255, 255, 0.08); text-align: center; z-index: 10; }
+.pfp-container { width: 130px; height: 130px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.12); background: #111; }
+.pfp-container img { width: 100%; height: 100%; object-fit: cover; }
 
-#drift-canvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -1;
-}
-
-/* --- THE CARD --- */
-.profile-card {
-  position: relative;
-  width: 330px;
-  padding: 55px 25px;
-  background: var(--card-bg);
-  border-radius: 45px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 60px rgba(0,0,0,1);
-  text-align: center;
-  z-index: 10;
-}
-
-/* --- PFP CONTAINER --- */
-.pfp-container {
-  width: 130px;
-  height: 130px;
-  margin: 0 auto;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1.5px solid rgba(255,255,255,0.12);
-  background: #111;
-}
-
-.pfp-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* --- SLIM NAME & 8K SHINE --- */
-.name {
-  font-size: 38px;
-  font-weight: 600;
-  margin-top: 25px;
-  color: #fff;
-  letter-spacing: -0.5px;
-  animation: shinePulse 4s infinite ease-in-out;
-}
-
-@keyframes shinePulse {
-  0%, 100% { text-shadow: 0 0 8px rgba(255,255,255,0.3); opacity: 0.85; }
-  50% { text-shadow: 0 0 25px #fff, 0 0 45px #fff; opacity: 1; }
+/* Name keeps the constant pulse */
+.name { font-size: 38px; font-weight: 600; margin-top: 25px; color: #fff; animation: namePulse 4s infinite ease-in-out; }
+@keyframes namePulse { 
+  0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.4); } 
+  50% { text-shadow: 0 0 25px #fff, 0 0 45px rgba(255,255,255,0.6); } 
 }
 
 .bio { font-size: 13px; color: #777; margin-top: 10px; }
 
-.joined-badge {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 11px;
-  color: #555;
-  margin-top: 22px;
-  border: 1px solid rgba(255,255,255,0.05);
+/* Social Icons: Glow ONLY on Touch/Hover */
+.social-row { display: flex; justify-content: center; gap: 25px; margin-top: 40px; }
+.social-row a { color: #fff; font-size: 24px; text-decoration: none; transition: 0.4s ease; }
+.social-row a:hover, .social-row a:active { 
+  transform: translateY(-5px); 
+  filter: drop-shadow(0 0 15px #fff) drop-shadow(0 0 30px rgba(255,255,255,0.5)); 
 }
 
-/* --- SOCIAL ICONS --- */
-.social-row {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin-top: 40px;
+/* Footer: Glow ONLY on Touch/Hover */
+.footer-info { display: flex; justify-content: center; gap: 25px; font-size: 11px; margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 25px; }
+.stat-item { color: #fff; display: flex; align-items: center; gap: 7px; cursor: pointer; transition: 0.4s ease; font-weight: 500; opacity: 0.8; }
+.stat-item a { color: inherit; text-decoration: none; display: flex; align-items: center; gap: 7px; }
+
+.stat-item:hover, .stat-item:active { 
+  opacity: 1;
+  text-shadow: 0 0 15px #fff, 0 0 30px rgba(255,255,255,0.8);
+  filter: drop-shadow(0 0 10px #fff);
 }
 
-.social-row a {
-  color: #fff;
-  font-size: 24px;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-  animation: iconGlow 4s infinite ease-in-out;
-}
-
-.social-row a:hover {
-  transform: translateY(-5px);
-}
-
-@keyframes iconGlow {
-  0%, 100% { filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); opacity: 0.5; }
-  50% { filter: drop-shadow(0 0 15px #fff); opacity: 1; }
-}
-
-/* --- FOOTER INFO --- */
-.footer-info {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  font-size: 11px;
-  margin-top: 35px;
-  border-top: 1px solid rgba(255,255,255,0.03);
-  padding-top: 25px;
-}
-
-.stat-item {
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  animation: statLight 4s infinite ease-in-out;
-}
-
-@keyframes statLight {
-  0%, 100% { opacity: 0.35; text-shadow: none; }
-  50% { opacity: 0.85; text-shadow: 0 0 10px #fff; }
-}
+/* Viewer Popup (B&W Telegram Style) */
+#viewer-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; max-height: 480px; background: #080808; border-radius: 15px; z-index: 100; overflow-y: auto; padding: 0; box-shadow: 0 0 100px #000; border: 0.5px solid #222; }
+.popup-header { position: sticky; top: 0; background: #080808; padding: 15px; border-bottom: 0.5px solid #222; display: flex; justify-content: space-between; align-items: center; }
+.popup-header span { font-weight: 600; font-size: 14px; color: #fff; }
+.viewer-list { list-style: none; padding: 0; margin: 0; font-family: 'Roboto', sans-serif; } 
+.viewer-list li { padding: 12px 15px; border-bottom: 0.5px solid #111; display: flex; justify-content: space-between; align-items: center; }
+.username { font-weight: 500; color: #ffffff; font-size: 14px; }
+.timestamp { color: #555555; font-size: 12px; }
+.close-btn { color: #ffffff; font-size: 14px; cursor: pointer; font-weight: 500; }
 </style>
 </head>
 <body>
 
 <canvas id="drift-canvas"></canvas>
+
+<div id="viewer-popup">
+  <div class="popup-header">
+    <span>Recent Viewers</span>
+    <span class="close-btn" onclick="toggleViewers(event)">Done</span>
+  </div>
+  <ul class="viewer-list" id="v-list"></ul>
+</div>
 
 <div class="profile-card">
   <div class="pfp-container">
@@ -154,28 +76,46 @@ body {
   <div class="name">Cratia</div>
   <div class="bio">Offline in spirit, online by force.</div>
 
-  <div class="joined-badge">
-    <i class="fa-regular fa-calendar"></i> Joined 9 months ago
-  </div>
-
   <div class="social-row">
     <a href="https://t.me/cratia" target="_blank"><i class="fab fa-telegram"></i></a>
-    
     <a href="https://discord.com/users/1215665111407009902" target="_blank"><i class="fab fa-discord"></i></a>
-    
     <a href="Https://open.spotify.com/artist/1QAJqy2dA3ihHBFIHRphZj?si=EBZf8Vq2RwiEV16qhAQt9Q" target="_blank"><i class="fab fa-spotify"></i></a>
-    
     <a href="https://github.com/crtai" target="_blank"><i class="fab fa-github"></i></a>
   </div>
 
   <div class="footer-info">
-    <div class="stat-item"><i class="fa-solid fa-eye"></i> 13,042</div>
-    <div class="stat-item"><i class="fa-solid fa-location-dot"></i> Ethiopia</div>
+    <div class="stat-item" onclick="toggleViewers(event)">
+        <i class="fa-solid fa-eye"></i> <span>13,042</span>
+    </div>
+    <div class="stat-item">
+      <a href="https://www.google.com/maps/place/Addis+Ababa" target="_blank">
+        <i class="fa-solid fa-location-dot"></i> <span>Ethiopia</span>
+      </a>
+    </div>
   </div>
 </div>
 
 <script>
-  /* --- STAR DRIFT --- */
+  function toggleViewers(e) {
+    if (e) e.stopPropagation();
+    const popup = document.getElementById('viewer-popup');
+    const list = document.getElementById('v-list');
+    
+    if (popup.style.display === 'block') {
+      popup.style.display = 'none';
+    } else {
+      list.innerHTML = "";
+      const rareNames = ["dark", "evil", "ghost", "void", "zero", "root", "soul", "sin", "god", "grim", "lone", "fade", "bane", "cult", "myth", "echo", "omen", "fate", "ruin", "mask", "veil", "cloak", "crypt", "dusk", "abyss", "chaos", "haze", "flux", "rift", "apex", "core", "null", "none", "ace", "zen", "max", "pro", "fix", "box", "key", "rare", "vibe", "sick", "cold", "heat", "fire", "ice", "wire", "link", "lost", "found", "dead", "live", "kill", "save", "hunt", "prey", "wild", "tame", "fast", "slow", "high", "low", "deep", "vast", "glow", "dim", "pure", "raw", "hard", "soft", "loud", "mute", "gold", "zinc", "neon", "bolt", "dash", "rush", "vile", "fury", "rage", "calm", "wind", "rain", "snow", "dirt", "sand", "wave", "tide", "surf", "sink", "swim", "fly", "fall", "rise", "stay", "exit", "born"];
+      const times = ["just now", "1m ago", "5m ago", "12m ago", "1h ago", "3h ago", "Yesterday", "2 days ago", "5 days ago", "6 days ago"];
+
+      rareNames.forEach(name => {
+        let randomTime = times[Math.floor(Math.random() * times.length)];
+        list.innerHTML += `<li><span class="username">@${name}</span> <span class="timestamp">${randomTime}</span></li>`;
+      });
+      popup.style.display = 'block';
+    }
+  }
+
   const canvas = document.getElementById('drift-canvas');
   const ctx = canvas.getContext('2d');
   let stars = [];
@@ -185,31 +125,12 @@ body {
 
   class Star {
     constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 1.1 + 0.4;
-      this.speed = Math.random() * 0.4 + 0.1;
-      this.opacity = Math.random() * 0.5 + 0.1;
-    }
-    update() {
-      this.x += this.speed;
-      if (this.x > canvas.width) { this.x = -10; this.y = Math.random() * canvas.height; }
-    }
-    draw() {
-      ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
+    reset() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*1.1+0.4; this.speed = Math.random()*0.4+0.1; this.opacity = Math.random()*0.5+0.1; }
+    update() { this.x += this.speed; if (this.x > canvas.width) this.reset(); }
+    draw() { ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
   }
-  function init() { stars = []; for (let i = 0; i < 110; i++) stars.push(new Star()); }
-  init();
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(s => { s.update(); s.draw(); });
-    requestAnimationFrame(animate);
-  }
+  for (let i = 0; i < 110; i++) stars.push(new Star());
+  function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); stars.forEach(s=>{s.update();s.draw();}); requestAnimationFrame(animate); }
   animate();
 </script>
 
