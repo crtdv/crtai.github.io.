@@ -13,7 +13,7 @@
 body { background: var(--true-black); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
 #drift-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-.profile-card { position: relative; width: 330px; padding: 55px 25px; background: var(--card-bg); border-radius: 45px; border: 1px solid rgba(255, 255, 255, 0.08); text-align: center; z-index: 10; }
+.profile-card { position: relative; width: 340px; padding: 55px 25px; background: var(--card-bg); border-radius: 45px; border: 1px solid rgba(255, 255, 255, 0.08); text-align: center; z-index: 10; }
 .pfp-container { width: 130px; height: 130px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.12); background: #111; }
 .pfp-container img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -35,14 +35,14 @@ body { background: var(--true-black); color: white; display: flex; justify-conte
 }
 
 /* Footer: Glow ONLY on Touch/Hover */
-.footer-info { display: flex; justify-content: center; gap: 25px; font-size: 11px; margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 25px; }
-.stat-item { color: #fff; display: flex; align-items: center; gap: 7px; cursor: pointer; transition: 0.4s ease; font-weight: 500; opacity: 0.8; }
+.footer-info { display: flex; justify-content: center; gap: 20px; font-size: 11px; margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 25px; }
+.stat-item { color: #fff; display: flex; align-items: center; gap: 7px; cursor: pointer; transition: 0.4s ease; font-weight: 500; opacity: 0.7; }
 .stat-item a { color: inherit; text-decoration: none; display: flex; align-items: center; gap: 7px; }
 
 .stat-item:hover, .stat-item:active { 
   opacity: 1;
-  text-shadow: 0 0 15px #fff, 0 0 30px rgba(255,255,255,0.8);
-  filter: drop-shadow(0 0 10px #fff);
+  text-shadow: 0 0 15px #fff;
+  filter: drop-shadow(0 0 8px #fff);
 }
 
 /* Viewer Popup (B&W Telegram Style) */
@@ -52,7 +52,7 @@ body { background: var(--true-black); color: white; display: flex; justify-conte
 .viewer-list { list-style: none; padding: 0; margin: 0; font-family: 'Roboto', sans-serif; } 
 .viewer-list li { padding: 12px 15px; border-bottom: 0.5px solid #111; display: flex; justify-content: space-between; align-items: center; }
 .username { font-weight: 500; color: #ffffff; font-size: 14px; }
-.timestamp { color: #555555; font-size: 12px; }
+.timestamp { color: #555555; font-size: 11px; }
 .close-btn { color: #ffffff; font-size: 14px; cursor: pointer; font-weight: 500; }
 </style>
 </head>
@@ -89,7 +89,7 @@ body { background: var(--true-black); color: white; display: flex; justify-conte
     </div>
     <div class="stat-item">
       <a href="https://www.google.com/maps/place/Addis+Ababa" target="_blank">
-        <i class="fa-solid fa-location-dot"></i> <span>Ethiopia</span>
+        <i class="fa-solid fa-location-dot"></i> <span>Unity Park, Addis</span>
       </a>
     </div>
   </div>
@@ -105,7 +105,7 @@ body { background: var(--true-black); color: white; display: flex; justify-conte
       popup.style.display = 'none';
     } else {
       list.innerHTML = "";
-      const rareNames = ["dark", "evil", "ghost", "void", "zero", "root", "soul", "sin", "god", "grim", "lone", "fade", "bane", "cult", "myth", "echo", "omen", "fate", "ruin", "mask", "veil", "cloak", "crypt", "dusk", "abyss", "chaos", "haze", "flux", "rift", "apex", "core", "null", "none", "ace", "zen", "max", "pro", "fix", "box", "key", "rare", "vibe", "sick", "cold", "heat", "fire", "ice", "wire", "link", "lost", "found", "dead", "live", "kill", "save", "hunt", "prey", "wild", "tame", "fast", "slow", "high", "low", "deep", "vast", "glow", "dim", "pure", "raw", "hard", "soft", "loud", "mute", "gold", "zinc", "neon", "bolt", "dash", "rush", "vile", "fury", "rage", "calm", "wind", "rain", "snow", "dirt", "sand", "wave", "tide", "surf", "sink", "swim", "fly", "fall", "rise", "stay", "exit", "born"];
+      const rareNames = ["night", "evil", "ghost", "void", "dark", "zero", "root", "soul", "sin", "god", "grim", "lone", "fade", "bane", "cult", "myth", "echo", "omen", "fate", "ruin", "mask", "veil", "cloak", "crypt", "dusk", "abyss", "chaos", "haze", "flux", "rift", "apex", "core", "null", "none", "ace", "zen", "max", "pro", "fix", "box", "key", "rare", "vibe", "sick", "cold", "heat", "fire", "ice", "wire", "link", "lost", "found", "dead", "live", "kill", "save", "hunt", "prey", "wild", "tame", "fast", "slow", "high", "low", "deep", "vast", "glow", "dim", "pure", "raw", "hard", "soft", "loud", "mute", "gold", "zinc", "neon", "bolt", "dash", "rush", "vile", "fury", "rage", "calm", "wind", "rain", "snow", "dirt", "sand", "wave", "tide", "surf", "sink", "swim", "fly", "fall", "rise", "stay", "exit", "born"];
       const times = ["just now", "1m ago", "5m ago", "12m ago", "1h ago", "3h ago", "Yesterday", "2 days ago", "5 days ago", "6 days ago"];
 
       rareNames.forEach(name => {
@@ -116,6 +116,7 @@ body { background: var(--true-black); color: white; display: flex; justify-conte
     }
   }
 
+  /* --- STAR DRIFT --- */
   const canvas = document.getElementById('drift-canvas');
   const ctx = canvas.getContext('2d');
   let stars = [];
